@@ -1,0 +1,82 @@
+package com.example.Team;
+
+import com.example.Player.Player;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+
+import java.util.ArrayList;
+
+@Component
+@Scope(value = "prototype")
+public class Team {
+    private int score;
+    private int wickets;
+    private int overs;
+    private int balls;
+    private ArrayList<Player> playerList;
+
+    public Team() {
+        this.playerList = new ArrayList<Player>(11);
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public int getWickets() {
+        return wickets;
+    }
+
+    public void setWickets(int wickets) {
+        this.wickets = wickets;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getOvers() {
+        return overs;
+    }
+
+    public void setOvers(int overs) {
+        this.overs = overs;
+    }
+
+    public int getBalls() {
+        return balls;
+    }
+
+    public void setBalls(int balls) {
+        this.balls = balls;
+    }
+
+    public void makeTeamIndia(){
+        playerList.add(new Player("Sachin", 30, Player.type.BATSMAN));
+        playerList.add(new Player("Shehwag", 29, Player.type.BATSMAN));
+        playerList.add(new Player("Gambhir", 26, Player.type.BATSMAN));
+        playerList.add(new Player("Kohli", 23, Player.type.BATSMAN));
+        playerList.add(new Player("Yuvraj", 27, Player.type.ALLROUNDER));
+        playerList.add(new Player("Dhoni", 27, Player.type.ALLROUNDER));
+        playerList.add(new Player("Raina", 26, Player.type.ALLROUNDER));
+        playerList.add(new Player("Harbhajan", 28, Player.type.BOWLER));
+        playerList.add(new Player("Zaheer", 29, Player.type.BOWLER));
+        playerList.add(new Player("Ashwin", 25, Player.type.BOWLER));
+        playerList.add(new Player("Chawla", 28, Player.type.BOWLER));
+    }
+
+    public void makeTeamPakistan(){
+        playerList.add(new Player("Abdur", 30, Player.type.BATSMAN));
+        playerList.add(new Player("Hafeez", 29, Player.type.BATSMAN));
+        playerList.add(new Player("Misbah", 26, Player.type.BATSMAN));
+        playerList.add(new Player("Younis", 23, Player.type.BATSMAN));
+        playerList.add(new Player("Kamran", 27, Player.type.ALLROUNDER));
+        playerList.add(new Player("Shoiab", 27, Player.type.ALLROUNDER));
+        playerList.add(new Player("Afridi", 26, Player.type.ALLROUNDER));
+        playerList.add(new Player("Riaz", 28, Player.type.BOWLER));
+        playerList.add(new Player("Umar", 29, Player.type.BOWLER));
+        playerList.add(new Player("Asad", 25, Player.type.BOWLER));
+        playerList.add(new Player("Junaid", 28, Player.type.BOWLER));
+    }
+}

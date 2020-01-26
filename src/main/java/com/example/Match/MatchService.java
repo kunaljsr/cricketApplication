@@ -1,0 +1,12 @@
+package com.example.Match;
+
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+public interface MatchService {
+    public void createTeam();
+    public void doToss();
+    public void scoreFirstInning();
+    public void scoreSecondInning();
+    public void decideWinner();
+}
