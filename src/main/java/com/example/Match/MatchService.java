@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 public interface MatchService {
     public void createTeam();
     public void doToss();
+    public void startMatch();
     public void scoreFirstInning();
     public void scoreSecondInning();
     public void decideWinner();

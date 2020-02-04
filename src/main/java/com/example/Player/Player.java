@@ -14,10 +14,12 @@ public class Player {
     public Player() {
     }
 
-    public Player(String name, int age, type t) {
+    public Player(String name, int age, type t, int score, int wickets) {
         this.name = name;
         this.age = age;
         this.t = t;
+        this.score = score;
+        this.wickets = wickets;
     }
 
     public String getName() {

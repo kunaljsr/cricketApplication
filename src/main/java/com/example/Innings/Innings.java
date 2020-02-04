@@ -8,13 +8,12 @@ import java.util.Random;
 @Scope(value = "prototype")
 public class Innings {
     private Team team;
-    private int score;
-    private int wickets;
-    private int overs;
-    private int balls;
     private int striker;
-    private int nonstriker;
-    private int baller;
+    private int nonStriker;
+    private int bowler;
+    private static int chasingScore;
+
+    private int score;
 
     public Team getTeam() {
         return team;
@@ -22,85 +21,6 @@ public class Innings {
 
     public void setTeam(Team team) {
         this.team = team;
-    }
-
-    public int getOvers() {
-        return overs;
-    }
-
-    public void setOvers(int overs) {
-        this.overs = overs;
-    }
-
-    public int getBalls() {
-        return balls;
-    }
-
-    public void setBalls(int balls) {
-        this.balls = balls;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore() {
-        int i;
-        int j = 0;
-        int ball;
-        int wickets = 0;
-        int score = 0;
-        int striker = 0, nonstriker = 1, temp;
-        Random rand = new Random();
-        for(i = 0; i < 20 ; i++){
-            for(j = 0; j < 6; j++){
-                ball = rand.nextInt(7);
-
-                if(ball == 6) {
-                    wickets++;
-                    setWickets(wickets);
-                    striker = wickets + 1;
-                }
-                else {
-                    score += ball + 1;
-
-                    if(ball == 1 || ball == 3){
-                        temp = striker;
-                        striker = nonstriker;
-                        nonstriker = temp;
-                    }
-                }
-
-                if(wickets == 10)
-                    break;
-
-            }
-            if(wickets == 10)
-                break;
-
-            temp = striker;
-            striker = nonstriker;
-            nonstriker = temp;
-        }
-        this.score = score;
-
-        if(i==20) {
-            setOvers(20);
-            setBalls(0);
-        }
-        else{
-            setOvers(i);
-            setBalls(j);
-        }
-
-    }
-
-    public int getWickets() {
-        return wickets;
-    }
-
-    public void setWickets(int wickets) {
-        this.wickets = wickets;
     }
 
     public int getStriker() {
@@ -111,19 +31,94 @@ public class Innings {
         this.striker = striker;
     }
 
-    public int getNonstriker() {
-        return nonstriker;
+    public int getNonStriker() {
+        return nonStriker;
     }
 
-    public void setNonstriker(int nonstriker) {
-        this.nonstriker = nonstriker;
+    public void setNonStriker(int nonStriker) {
+        this.nonStriker = nonStriker;
     }
 
-    public int getBaller() {
-        return baller;
+    public int getBowler() {
+        return bowler;
     }
 
-    public void setBaller(int baller) {
-        this.baller = baller;
+    public void setBowler(int bowler) {
+        this.bowler = bowler;
+    }
+
+    public int getChasingScore() {
+        return chasingScore;
+    }
+
+    public void setChasingScore(int score) {
+        this.chasingScore = score;
+    }
+
+    public void setScoreFirstInning(){
+        makeScore(false );
+        setChasingScore(getTeam().getScore());
+    }
+
+    public void setScoreSecondInning(){
+        makeScore(true);
+    }
+
+    public void makeScore(boolean chase) {
+        int i;
+        int j = 0;
+        int ball;
+        int wickets = 0;
+        int score = 0;
+        Random rand = new Random();
+        for(i = 0; i < 20 ; i++){
+            for(j = 0; j < 6; j++){
+                do {
+                    ball = rand.nextInt(7);
+                }while(ball == 4);
+
+                if(ball == 6) {
+                    wickets++;
+                    getTeam().setWickets(wickets);
+                    setStriker(wickets + 1);
+                }
+
+                else {
+                    score += ball + 1;
+                    getTeam().getPlayerList().get(striker).setScore(getTeam().getPlayerList().get(striker).getScore() + ball + 1);
+                    if(score == 1 || score == 3){
+                        changeStrikers();
+                    }
+                }
+                if(wickets == 10 || (chase && score > getChasingScore()))
+                    break;
+            }
+            if(wickets == 10 || (chase && score > getChasingScore()))
+                break;
+            changeStrikers();
+        }
+        getTeam().setScore(score);
+        if(i==20) {
+            getTeam().setOvers(20);
+            getTeam().setBalls(0);
+        }
+        else{
+            getTeam().setOvers(i);
+            getTeam().setBalls(j);
+        }
+        playerScore();
+    }
+
+    public void changeStrikers(){
+        int temp = getStriker();
+        setStriker(getNonStriker());
+        setNonStriker(temp);
+    }
+
+    public void playerScore(){
+        int i=0;
+        for(i = 0;i < 11;i++){
+            System.out.println(getTeam().getPlayerList().get(i).getName() + " " + getTeam().getPlayerList().get(i).getScore());
+        }
     }
 }

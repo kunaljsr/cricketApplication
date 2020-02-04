@@ -15,9 +15,12 @@ public class CricketController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String  startMatch(){
+        System.out.println("\n***** Match Starts *****\n");
         matchService.createTeam();
         matchService.doToss();
+        matchService.startMatch();
         matchService.decideWinner();
+        System.out.println("***** Match Ends *****");
         return "Match Started, go to console for more updates.";
     }
 }

@@ -21,7 +21,9 @@ public class MatchServiceImpl implements MatchService {
 
     @Override
     public void createTeam() {
+        A.setName("India");
         A.makeTeamIndia();
+        B.setName("Pakistan");
         B.makeTeamPakistan();
     }
 
@@ -37,60 +39,59 @@ public class MatchServiceImpl implements MatchService {
             System.out.print("Pakistan won the toss ");
         }
 
-        int head = rand.nextInt(2);;
+        int bat = rand.nextInt(2);;
 
-        if(head == 1)
-            System.out.println("and chose to bat.");
+        if(bat == 1)
+            System.out.println("and chose to bat.\n");
         else
-            System.out.println("and chose to ball");
+            System.out.println("and chose to ball.\n");
 
-        scoreFirstInning();
-        scoreSecondInning();
-        if((toss == 1 && head == 1) || (toss ==0 && head ==0)){
+        if((toss == 1 && bat == 1) || (toss ==0 && bat ==0)){
             first.setTeam(A);
             second.setTeam(B);
-            A.setScore(first.getScore());
-            A.setWickets(first.getWickets());
-            A.setOvers(first.getOvers());
-            A.setBalls(first.getBalls());
-            B.setScore(second.getScore());
-            B.setWickets(second.getWickets());
-            B.setOvers(second.getOvers());
-            B.setBalls(second.getBalls());
         }
         else{
             first.setTeam(B);
             second.setTeam(A);
-            B.setScore(first.getScore());
-            B.setWickets(first.getWickets());
-            B.setOvers(first.getOvers());
-            B.setBalls(first.getBalls());
-            A.setScore(second.getScore());
-            A.setWickets(second.getWickets());
-            A.setOvers(second.getOvers());
-            A.setBalls(second.getBalls());
         }
-        System.out.println("India: " + A.getScore() + "/" + A.getWickets() + " in " + A.getOvers() + "." + A.getBalls() + " overs");
-        System.out.println("Pakistan: " + B.getScore() + "/" + B.getWickets() + " in " + B.getOvers() + "." + B.getBalls() + " overs");
+
     }
 
     @Override
+    public void startMatch() {
+        System.out.println(first.getTeam().getName() + " in first Inning:");
+        first.setStriker(0);
+        first.setNonStriker(1);
+        scoreFirstInning();
+        System.out.println(first.getTeam().getName() + ": " + first.getTeam().getScore() + "/" + first.getTeam().getWickets() + " in " + first.getTeam().getOvers() + "." + first.getTeam().getBalls() + " overs\n");
+
+        System.out.println(second.getTeam().getName() + " in Second Inning:");
+        second.setStriker(0);
+        second.setNonStriker(1);
+        scoreSecondInning();
+        System.out.println(second.getTeam().getName() + ": " + second.getTeam().getScore() + "/" + second.getTeam().getWickets() + " in " + second.getTeam().getOvers() + "." + second.getTeam().getBalls() + " overs");
+    }
+
+
+    @Override
     public void scoreFirstInning() {
-        first.setScore();
+        first.setScoreFirstInning();
     }
 
     @Override
     public void scoreSecondInning() {
-        second.setScore();
+        second.setScoreSecondInning();
     }
 
     @Override
     public void decideWinner() {
-        if(A.getScore() > B.getScore())
-            System.out.println("India won by " + (A.getScore() - B.getScore()) + " runs\n\n");
-        else if(A.getScore() < B.getScore())
-            System.out.println("Pakistan won by " + (B.getScore() - A.getScore()) + " runs\n\n");
+        if(first.getTeam().getScore() > second.getTeam().getScore()){
+            System.out.println("\n" + first.getTeam().getName() + " won by " + (first.getTeam().getScore() - second.getTeam().getScore()) + " run(s)\n");
+        }
+        else if(second.getTeam().getScore() > first.getTeam().getScore()){
+            System.out.println("\n" + second.getTeam().getName() + " won by " + (10 - second.getTeam().getWickets()) + " wicket(s)\n");
+        }
         else
-            System.out.println("Match draw\n\n");
+            System.out.println("/nMatch draw\n");
     }
 }
