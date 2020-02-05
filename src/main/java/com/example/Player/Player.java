@@ -49,6 +49,22 @@ public class Player {
         this.noOfWicketTaken = noOfWicketTaken;
     }
 
+    public int getBatRating() {
+        return batRating;
+    }
+
+    public void setBatRating(int batRating) {
+        this.batRating = batRating;
+    }
+
+    public int getBowlRating() {
+        return bowlRating;
+    }
+
+    public void setBowlRating(int bowlRating) {
+        this.bowlRating = bowlRating;
+    }
+
     public enum type{
         BATSMAN, BOWLER;
     }
@@ -57,21 +73,15 @@ public class Player {
     private int age;
     private type type;
 
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
 
     private int score;
     private int wickets;
     private int ballPlayed;
 
-    public int getRating() {
-        return rating;
-    }
-
     private  int noOfFour;
     private int noofSix;
-    private int rating;
+    private int batRating;
+    private int bowlRating;
     //bowler
     private int noOfOver;
     private  int runGiven;
@@ -80,13 +90,14 @@ public class Player {
     public Player() {
     }
 
-    public Player(String name, int age, type type, int score, int wickets, int rating) {
+    public Player(String name, int age, type type, int score, int wickets, int batRating , int bowlRating) {
         this.name = name;
         this.age = age;
         this.type = type;
         this.score = score;
         this.wickets = wickets;
-        this.rating = rating;
+        this.batRating = batRating;
+        this.bowlRating = bowlRating;
 
     }
 

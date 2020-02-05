@@ -85,13 +85,14 @@ public class Innings {
         for(i = 0; i < 20 ; i++){
             for(j = 0; j < 6; j++){
                 do {
-                    if(myRamdombowl(getTeam2().getPlayerList().get(bowler).getRating()))
+                    if(myRamdombowl(getTeam2().getPlayerList().get(bowler).getBowlRating()))
                     {
                         ballOutput = 6;
                     }
                     else
                     {
-                        ballOutput = myRamdomBat(getTeam().getPlayerList().get(striker).getRating());
+                           getTeam().getPlayerList().get(striker).getType();
+                        ballOutput = myRamdomBat(getTeam().getPlayerList().get(striker).getBatRating());
                     }
                 }while(ballOutput == 4);
 
@@ -183,9 +184,7 @@ public class Innings {
         int maxWicket = random.nextInt(11);
         if(maxWicket < rating/2)
             return true;
-
         return false;
-
     }
 
 
