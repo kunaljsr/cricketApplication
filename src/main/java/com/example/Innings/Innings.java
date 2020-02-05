@@ -1,4 +1,5 @@
 package com.example.Innings;
+import com.example.Player.Player;
 import com.example.Team.Team;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -77,38 +78,44 @@ public class Innings {
     public void makeScore(boolean chase) {
         int i;
         int j = 0;
-        int ball;
+        int ballOutput;
         int wickets = 0;
         int score = 0;
         Random rand = new Random();
         for(i = 0; i < 20 ; i++){
             for(j = 0; j < 6; j++){
                 do {
-                    ball = rand.nextInt(7);
-                }while(ball == 4);
+                    if(myRamdombowl(getTeam2().getPlayerList().get(bowler).getRating()))
+                    {
+                        ballOutput = 6;
+                    }
+                    else
+                    {
+                        ballOutput = myRamdomBat(getTeam().getPlayerList().get(striker).getRating());
+                    }
+                }while(ballOutput == 4);
 
-                if(ball == 3)
+                if(ballOutput == 3)
                 {
                     getTeam().getPlayerList().get(striker).setNoOfFour(getTeam().getPlayerList().get(striker).getNoOfFour() + 1);
                 }
-                if(ball == 5)
+                if(ballOutput == 5)
                 {
                     getTeam().getPlayerList().get(striker).setNoofSix(getTeam().getPlayerList().get(striker).getNoofSix() + 1);
                 }
 
-                if(ball == 6) {
+                if(ballOutput == 6) {
                     wickets++;
                     getTeam2().getPlayerList().get(bowler).setNoOfWicketTaken(getTeam2().getPlayerList().get(bowler).getNoOfWicketTaken() + 1);
                     getTeam().setWickets(wickets);
                     getTeam().getPlayerList().get(striker).setBallPlayed(getTeam().getPlayerList().get(striker).getBallPlayed() + 1);
                     setStriker(wickets + 1);
-
                 }
                 else {
-                    score += ball + 1;
-                    getTeam().getPlayerList().get(striker).setScore(getTeam().getPlayerList().get(striker).getScore() + ball + 1);
+                    score += ballOutput + 1;
+                    getTeam().getPlayerList().get(striker).setScore(getTeam().getPlayerList().get(striker).getScore() + ballOutput + 1);
                     getTeam().getPlayerList().get(striker).setBallPlayed(getTeam().getPlayerList().get(striker).getBallPlayed()  + 1);
-                    getTeam2().getPlayerList().get(bowler).setRunGiven(getTeam2().getPlayerList().get(bowler).getRunGiven() + ball + 1);
+                    getTeam2().getPlayerList().get(bowler).setRunGiven(getTeam2().getPlayerList().get(bowler).getRunGiven() + ballOutput + 1);
                     if(score == 1 || score == 3){
                         changeStrikers();
                     }
@@ -162,6 +169,25 @@ public class Innings {
             System.out.println(getTeam2().getPlayerList().get(i).getName() + "\t" + "\t" + getTeam2().getPlayerList().get(i).getNoOfOver() + "\t" + "\t" + getTeam2().getPlayerList().get(i).getRunGiven() + "\t" + "\t" + "\t" + getTeam2().getPlayerList().get(i).getNoOfWicketTaken()  + "\t" );
         }
     }
+
+    public int  myRamdomBat( int rating)
+    {
+            Random random = new Random();
+            int maxRun = random.nextInt(rating+1);
+            return maxRun;
+
+    }
+    public boolean  myRamdombowl( int rating)
+    {
+        Random random = new Random();
+        int maxWicket = random.nextInt(11);
+        if(maxWicket < rating/2)
+            return true;
+
+        return false;
+
+    }
+
 
 
 

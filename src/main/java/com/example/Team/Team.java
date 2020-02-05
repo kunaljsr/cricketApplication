@@ -70,30 +70,30 @@ public class Team {
     }
 
     public void makeTeamIndia(){
-        playerList.add(new Player("Sachin", 30, Player.type.BATSMAN, 0, 0));
-        playerList.add(new Player("Shehwag", 29, Player.type.BATSMAN, 0, 0));
-        playerList.add(new Player("Gambhir", 26, Player.type.BATSMAN,0, 0));
-        playerList.add(new Player("Kohli", 23, Player.type.BATSMAN, 0, 0));
-        playerList.add(new Player("Yuvraj", 27, Player.type.ALLROUNDER, 0, 0));
-        playerList.add(new Player("Dhoni", 27, Player.type.ALLROUNDER, 0, 0));
-        playerList.add(new Player("Raina", 26, Player.type.ALLROUNDER, 0, 0));
-        playerList.add(new Player("Shami", 28, Player.type.BOWLER, 0, 0));
-        playerList.add(new Player("Zaheer", 29, Player.type.BOWLER,0, 0));
-        playerList.add(new Player("Ashwin", 25, Player.type.BOWLER,0,0));
-        playerList.add(new Player("Chawla", 28, Player.type.BOWLER,0,0));
+        playerList.add(new Player("Sachin", 30, Player.type.BATSMAN, 0, 0 ,5) );
+        playerList.add(new Player("Shehwag", 29, Player.type.BATSMAN, 0, 0,4));
+        playerList.add(new Player("Gambhir", 26, Player.type.BATSMAN,0, 0,4));
+        playerList.add(new Player("Kohli", 23, Player.type.BATSMAN, 0, 0,4));
+        playerList.add(new Player("Yuvraj", 27, Player.type.BATSMAN, 0, 0,3));
+        playerList.add(new Player("Dhoni", 27, Player.type.BATSMAN, 0, 0,5));
+        playerList.add(new Player("Raina", 26, Player.type.BATSMAN, 0, 0,3));
+        playerList.add(new Player("Shami", 28, Player.type.BOWLER, 0, 0,5));
+        playerList.add(new Player("Zaheer", 29, Player.type.BOWLER,0, 0,4));
+        playerList.add(new Player("Ashwin", 25, Player.type.BOWLER,0,0,2));
+        playerList.add(new Player("Chawla", 28, Player.type.BOWLER,0,0,1));
     }
 
     public void makeTeamPakistan(){
-        playerList.add(new Player("Abdur", 30, Player.type.BATSMAN,0,0));
-        playerList.add(new Player("Hafeez", 29, Player.type.BATSMAN,0,0));
-        playerList.add(new Player("Misbah", 26, Player.type.BATSMAN,0,0));
-        playerList.add(new Player("Younis", 23, Player.type.BATSMAN,0,0));
-        playerList.add(new Player("Kamran", 27, Player.type.ALLROUNDER,0,0));
-        playerList.add(new Player("Shoiab", 27, Player.type.ALLROUNDER,0,0));
-        playerList.add(new Player("Afridi", 26, Player.type.ALLROUNDER,0,0));
-        playerList.add(new Player("Riaz", 28, Player.type.BOWLER,0,0));
-        playerList.add(new Player("Umar", 29, Player.type.BOWLER,0,0));
-        playerList.add(new Player("Asad", 25, Player.type.BOWLER,0,0));
-        playerList.add(new Player("Junaid", 28, Player.type.BOWLER,0,0));
+        playerList.add(new Player("Abdur", 30, Player.type.BATSMAN,0,0,5));
+        playerList.add(new Player("Hafeez", 29, Player.type.BATSMAN,0,0,4));
+        playerList.add(new Player("Misbah", 26, Player.type.BATSMAN,0,0,4));
+        playerList.add(new Player("Younis", 23, Player.type.BATSMAN,0,0,4));
+        playerList.add(new Player("Kamran", 27, Player.type.BATSMAN,0,0,3));
+        playerList.add(new Player("Shoiab", 27, Player.type.BATSMAN,0,0,4));
+        playerList.add(new Player("Afridi", 26, Player.type.BOWLER,0,0,3));
+        playerList.add(new Player("Riaz", 28, Player.type.BOWLER,0,0,2));
+        playerList.add(new Player("Umar", 29, Player.type.BOWLER,0,0,0));
+        playerList.add(new Player("Asad", 25, Player.type.BOWLER,0,0,1));
+        playerList.add(new Player("Junaid", 28, Player.type.BOWLER,0,0,0));
     }
 }

@@ -13,6 +13,7 @@ public class CricketApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CricketApplication.class, args);
+
 	}
 
 }

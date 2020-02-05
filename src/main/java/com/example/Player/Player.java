@@ -50,18 +50,28 @@ public class Player {
     }
 
     public enum type{
-        BATSMAN, ALLROUNDER, BOWLER;
+        BATSMAN, BOWLER;
     }
 
     private String name;
     private int age;
-    private type t;
+    private type type;
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
     private int score;
     private int wickets;
     private int ballPlayed;
+
+    public int getRating() {
+        return rating;
+    }
+
     private  int noOfFour;
     private int noofSix;
-
+    private int rating;
     //bowler
     private int noOfOver;
     private  int runGiven;
@@ -70,12 +80,14 @@ public class Player {
     public Player() {
     }
 
-    public Player(String name, int age, type t, int score, int wickets) {
+    public Player(String name, int age, type type, int score, int wickets, int rating) {
         this.name = name;
         this.age = age;
-        this.t = t;
+        this.type = type;
         this.score = score;
         this.wickets = wickets;
+        this.rating = rating;
+
     }
 
     public String getName() {
@@ -94,12 +106,12 @@ public class Player {
         this.age = age;
     }
 
-    public type getT() {
-        return t;
+    public type getType() {
+        return type;
     }
 
-    public void setT(type t) {
-        this.t = t;
+    public void setType(type type) {
+        this.type = type;
     }
 
     public int getScore() {
