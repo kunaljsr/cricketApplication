@@ -77,7 +77,7 @@ public class Team {
         playerList.add(new Player("Yuvraj", 27, Player.type.ALLROUNDER, 0, 0));
         playerList.add(new Player("Dhoni", 27, Player.type.ALLROUNDER, 0, 0));
         playerList.add(new Player("Raina", 26, Player.type.ALLROUNDER, 0, 0));
-        playerList.add(new Player("Harbhajan", 28, Player.type.BOWLER, 0, 0));
+        playerList.add(new Player("Shami", 28, Player.type.BOWLER, 0, 0));
         playerList.add(new Player("Zaheer", 29, Player.type.BOWLER,0, 0));
         playerList.add(new Player("Ashwin", 25, Player.type.BOWLER,0,0));
         playerList.add(new Player("Chawla", 28, Player.type.BOWLER,0,0));

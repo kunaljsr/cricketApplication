@@ -2,7 +2,7 @@ package com.example.Match;
 
 import com.example.Innings.Innings;
 import com.example.Team.Team;
-import com.sun.source.tree.BreakTree;
+//import com.sun.source.tree.BreakTree;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,11 +48,16 @@ public class MatchServiceImpl implements MatchService {
 
         if((toss == 1 && bat == 1) || (toss ==0 && bat ==0)){
             first.setTeam(A);
+            first.setTeam2(B);
             second.setTeam(B);
+            second.setTeam2(A);
         }
         else{
             first.setTeam(B);
+            first.setTeam2(A);
             second.setTeam(A);
+            second.setTeam2(B);
+
         }
 
     }
@@ -62,12 +67,14 @@ public class MatchServiceImpl implements MatchService {
         System.out.println(first.getTeam().getName() + " in first Inning:");
         first.setStriker(0);
         first.setNonStriker(1);
+        first.setBowler(6);
         scoreFirstInning();
         System.out.println(first.getTeam().getName() + ": " + first.getTeam().getScore() + "/" + first.getTeam().getWickets() + " in " + first.getTeam().getOvers() + "." + first.getTeam().getBalls() + " overs\n");
 
         System.out.println(second.getTeam().getName() + " in Second Inning:");
         second.setStriker(0);
         second.setNonStriker(1);
+        second.setBowler(6);
         scoreSecondInning();
         System.out.println(second.getTeam().getName() + ": " + second.getTeam().getScore() + "/" + second.getTeam().getWickets() + " in " + second.getTeam().getOvers() + "." + second.getTeam().getBalls() + " overs");
     }

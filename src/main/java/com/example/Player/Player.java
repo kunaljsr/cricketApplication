@@ -1,6 +1,54 @@
 package com.example.Player;
 
 public class Player {
+    public int getBallPlayed() {
+        return ballPlayed;
+    }
+
+    public void setBallPlayed(int ballPlayed) {
+        this.ballPlayed = ballPlayed;
+    }
+
+    public int getNoOfFour() {
+        return noOfFour;
+    }
+
+    public void setNoOfFour(int noOfFour) {
+        this.noOfFour = noOfFour;
+    }
+
+    public int getNoofSix() {
+        return noofSix;
+    }
+
+    public void setNoofSix(int noofSix) {
+        this.noofSix = noofSix;
+    }
+
+    public int getNoOfOver() {
+        return noOfOver;
+    }
+
+    public void setNoOfOver(int noOfOver) {
+        this.noOfOver = noOfOver;
+    }
+
+    public int getRunGiven() {
+        return runGiven;
+    }
+
+    public void setRunGiven(int runGiven) {
+        this.runGiven = runGiven;
+    }
+
+    public int getNoOfWicketTaken() {
+        return noOfWicketTaken;
+    }
+
+    public void setNoOfWicketTaken(int noOfWicketTaken) {
+        this.noOfWicketTaken = noOfWicketTaken;
+    }
+
     public enum type{
         BATSMAN, ALLROUNDER, BOWLER;
     }
@@ -10,6 +58,14 @@ public class Player {
     private type t;
     private int score;
     private int wickets;
+    private int ballPlayed;
+    private  int noOfFour;
+    private int noofSix;
+
+    //bowler
+    private int noOfOver;
+    private  int runGiven;
+    private   int noOfWicketTaken;
 
     public Player() {
     }
