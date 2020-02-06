@@ -91,14 +91,22 @@ public class MatchServiceImpl implements MatchService {
     }
 
     @Override
-    public void decideWinner() {
+    public String decideWinner() {
+        String result = " ";
         if(first.getTeam().getScore() > second.getTeam().getScore()){
             System.out.println("\n" + first.getTeam().getName() + " won by " + (first.getTeam().getScore() - second.getTeam().getScore()) + " run(s)\n");
+            result +=  first.getTeam().getName() + " won by " + (first.getTeam().getScore() - second.getTeam().getScore()) + " run(s)";
+            return  result;
         }
         else if(second.getTeam().getScore() > first.getTeam().getScore()){
             System.out.println("\n" + second.getTeam().getName() + " won by " + (10 - second.getTeam().getWickets()) + " wicket(s)\n");
+            result +=  second.getTeam().getName() + " won by " + (10 - second.getTeam().getWickets()) + " wicket(s)";
+            return  result;
         }
-        else
+        else {
             System.out.println("/nMatch draw\n");
+            result += "Match draw";
+            return  result;
+        }
     }
 }

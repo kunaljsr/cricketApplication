@@ -19,8 +19,8 @@ public class CricketController {
         matchService.createTeam();
         matchService.doToss();
         matchService.startMatch();
-        matchService.decideWinner();
-        System.out.println("***** Match Ends *****");
-        return "Match Started, go to console for more updates.";
+        return matchService.decideWinner();
+       // System.out.println("***** Match Ends *****");
+       // return "Match Started, go to console for more updates.";
     }
 }

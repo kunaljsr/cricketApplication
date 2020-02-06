@@ -9,5 +9,5 @@ public interface MatchService {
     public void startMatch();
     public void scoreFirstInning();
     public void scoreSecondInning();
-    public void decideWinner();
+    public String decideWinner();
 }
