@@ -1,6 +1,70 @@
 package com.example.Player;
 
+
+import org.springframework.data.annotation.Id;
+
 public class Player {
+
+    public enum type{
+        BATSMAN, BOWLER;
+    }
+    @Id
+    private String name;
+
+    private type type;
+
+
+    private int score;
+
+    private int ballPlayed;
+
+    private  int noOfFour;
+    private int noofSix;
+    private int batRating;
+    private int bowlRating;
+    //bowler
+    private int noOfOver;
+    private  int runGiven;
+    private   int noOfWicketTaken;
+
+    public Player() {
+    }
+
+    public Player(String name, type type, int score, int wickets, int batRating , int bowlRating) {
+        this.name = name;
+
+        this.type = type;
+        this.score = score;
+
+        this.batRating = batRating;
+        this.bowlRating = bowlRating;
+
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public type getType() {
+        return type;
+    }
+
+    public void setType(type type) {
+        this.type = type;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
     public int getBallPlayed() {
         return ballPlayed;
     }
@@ -63,81 +127,5 @@ public class Player {
 
     public void setBowlRating(int bowlRating) {
         this.bowlRating = bowlRating;
-    }
-
-    public enum type{
-        BATSMAN, BOWLER;
-    }
-
-    private String name;
-    private int age;
-    private type type;
-
-
-    private int score;
-    private int wickets;
-    private int ballPlayed;
-
-    private  int noOfFour;
-    private int noofSix;
-    private int batRating;
-    private int bowlRating;
-    //bowler
-    private int noOfOver;
-    private  int runGiven;
-    private   int noOfWicketTaken;
-
-    public Player() {
-    }
-
-    public Player(String name, int age, type type, int score, int wickets, int batRating , int bowlRating) {
-        this.name = name;
-        this.age = age;
-        this.type = type;
-        this.score = score;
-        this.wickets = wickets;
-        this.batRating = batRating;
-        this.bowlRating = bowlRating;
-
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public type getType() {
-        return type;
-    }
-
-    public void setType(type type) {
-        this.type = type;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
-    public int getWickets() {
-        return wickets;
-    }
-
-    public void setWickets(int wickets) {
-        this.wickets = wickets;
     }
 }

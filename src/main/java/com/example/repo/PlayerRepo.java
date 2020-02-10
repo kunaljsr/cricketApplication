@@ -1,11 +1,9 @@
-package com.example.config;
+package com.example.repo;
 
-import com.example.Player.Player;
+import com.example.Match.Match;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import java.util.List;
-
-public interface PlayerRepo extends MongoRepository<Player, String> {
-    public List<Player> findByScoreGreaterThan(int maxScore);
+public interface PlayerRepo extends MongoRepository<Match, String> {
+//    public List<Player> findByScoreGreaterThan(int maxScore);
 
 }

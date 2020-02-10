@@ -1,34 +1,59 @@
 package com.example.Match;
 
 import com.example.Innings.Innings;
+import com.example.MatchFormat;
+import com.example.MatchStart;
+import com.example.Player.PlayerService;
 import com.example.Team.Team;
-//import com.sun.source.tree.BreakTree;
+import com.example.es.model.MatchEs;
+import com.example.es.service.MatchEsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.Random;
 
 @Service
 public class MatchServiceImpl implements MatchService {
     @Autowired
-    private Team A;
+    private Team A ;
     @Autowired
-    private Team B;
+    private Team B ;
     @Autowired
-    private Innings first;
+    private Innings first ;
     @Autowired
-    private Innings second;
+    private Innings second ;
 
+    @Autowired
+    private PlayerService playerService;
+
+    @Autowired
+    private MatchEsService matchEsService;
+
+    private  String result ;
+
+    @Autowired Match match;
+
+    @Autowired
+    MatchEs matchEs;
+
+    MatchStart matchStart;
     @Override
-    public void createTeam() {
-        A.setName("India");
-        A.makeTeamIndia();
-        B.setName("Pakistan");
-        B.makeTeamPakistan();
+    public void createTeam(MatchInput request) {
+        A = new Team();
+        B = new Team();
+        first = new Innings();
+        second = new Innings();
+        A.setName(request.getTeamOne());
+        A.makeTeamOne();
+        B.setName(request.getTeamTwo());
+        B.makeTeamTwo();
+        matchStart.setMatchDescription("match started between" +"\t" + request.getTeamOne() +"\t" +"and" +"\t" + request.getTeamTwo() );
     }
 
     @Override
-    public void doToss() {
+    public void doToss(MatchInput request) {
+       
         Random rand = new Random();
         int toss = rand.nextInt(2);
 
@@ -63,7 +88,21 @@ public class MatchServiceImpl implements MatchService {
     }
 
     @Override
-    public void startMatch() {
+    public void startMatch(MatchInput request) {
+//        MatchResult.clearAll();
+        if(MatchFormat.ODI.name().equals(request.getMatchType()) ) {
+            first.setOvers(50);
+            second.setOvers(50);
+        }
+        else if(MatchFormat.TEST.equals(request.getMatchType()) ) {
+            first.setOvers(90);
+            second.setOvers(90);
+        }
+        else 
+        {
+            first.setOvers(20);
+            second.setOvers(20);
+        }
         System.out.println(first.getTeam().getName() + " in first Inning:");
         first.setStriker(0);
         first.setNonStriker(1);
@@ -79,6 +118,31 @@ public class MatchServiceImpl implements MatchService {
         System.out.println(second.getTeam().getName() + ": " + second.getTeam().getScore() + "/" + second.getTeam().getWickets() + " in " + second.getTeam().getOvers() + "." + second.getTeam().getBalls() + " overs");
     }
 
+    @Override
+    public void stats(MatchInput request) {
+        match.setId(request.getTeamOne() + request.getTeamTwo() + request.getDate());
+        match.setTeam1(request.getTeamOne());
+        match.setTeam2(request.getTeamTwo());
+        match.setFirstBat(first.getTeam().getName());
+        match.setFirstTeam(first.getTeam());
+        match.setSecondTeam(first.getTeam2());
+        match.setDate(request.getDate());
+        match.setMatchResult(result);
+
+
+
+        matchEs.setId(request.getTeamOne() + request.getTeamTwo() + request.getDate());
+        matchEs.setTeam1(request.getTeamOne());
+        matchEs.setTeam2(request.getTeamTwo());
+        matchEs.setDate(request.getDate());
+        matchEs.setFirstBat(first.getTeam().getName());
+        matchEs.setFirstTeam(first.getTeam());
+        matchEs.setSecondTeam(first.getTeam2());
+        matchEs.setMatchResult(result);
+        playerService.save(match);
+        matchEsService.save(matchEs);
+    }
+
 
     @Override
     public void scoreFirstInning() {
@@ -91,22 +155,24 @@ public class MatchServiceImpl implements MatchService {
     }
 
     @Override
-    public String decideWinner() {
-        String result = " ";
+    public void decideWinner() {
+        result="";
         if(first.getTeam().getScore() > second.getTeam().getScore()){
-            System.out.println("\n" + first.getTeam().getName() + " won by " + (first.getTeam().getScore() - second.getTeam().getScore()) + " run(s)\n");
             result +=  first.getTeam().getName() + " won by " + (first.getTeam().getScore() - second.getTeam().getScore()) + " run(s)";
-            return  result;
         }
         else if(second.getTeam().getScore() > first.getTeam().getScore()){
-            System.out.println("\n" + second.getTeam().getName() + " won by " + (10 - second.getTeam().getWickets()) + " wicket(s)\n");
             result +=  second.getTeam().getName() + " won by " + (10 - second.getTeam().getWickets()) + " wicket(s)";
-            return  result;
         }
         else {
-            System.out.println("/nMatch draw\n");
             result += "Match draw";
-            return  result;
         }
     }
+
+    @Override
+    public Optional<Match> getScorecard(MatchInput request)
+    {
+        return playerService.findbyIndexes(request.getTeamOne()+ request.getTeamTwo());
+    }
+
+
 }

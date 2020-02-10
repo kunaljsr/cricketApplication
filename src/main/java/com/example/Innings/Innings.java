@@ -1,21 +1,23 @@
 package com.example.Innings;
-import com.example.Player.Player;
 import com.example.Team.Team;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
 import java.util.Random;
 
 @Component
 @Scope(value = "prototype")
 public class Innings {
     private Team team;
-    private  Team team2;
+    private Team team2;
     private int striker;
     private int nonStriker;
     private int bowler;
     private static int chasingScore;
-
+    private int overs;
     private int score;
+
+
 
     public Innings() {
     }
@@ -35,6 +37,7 @@ public class Innings {
     public void setStriker(int striker) {
         this.striker = striker;
     }
+
     public Team getTeam2() {
         return team2;
     }
@@ -82,7 +85,7 @@ public class Innings {
         int wickets = 0;
         int score = 0;
         Random rand = new Random();
-        for(i = 0; i < 20 ; i++){
+        for(i = 0; i < getOvers()-1 ; i++){
             for(j = 0; j < 6; j++){
                 do {
                     if(myRamdombowl(getTeam2().getPlayerList().get(bowler).getBowlRating()))
@@ -121,8 +124,7 @@ public class Innings {
                         changeStrikers();
                     }
                 }
-                if(wickets == 10 || (chase && score > getChasingScore()))
-                    break;
+                if(wickets == 10 || (chase && score > getChasingScore())) break;
             }
             getTeam2().getPlayerList().get(bowler).setNoOfOver(getTeam2().getPlayerList().get(bowler).getNoOfOver() + 1);
             changeBowler();
@@ -131,6 +133,7 @@ public class Innings {
             changeStrikers();
         }
         getTeam().setScore(score);
+
         if(i==20) {
             getTeam().setOvers(20);
             getTeam().setBalls(0);
@@ -139,7 +142,8 @@ public class Innings {
             getTeam().setOvers(i);
             getTeam().setBalls(j);
         }
-        playerScore();
+        playerScore(chase);
+
     }
 
     public void changeStrikers(){
@@ -156,7 +160,7 @@ public class Innings {
             setBowler(temp + 1);
     }
 
-    public void playerScore(){
+    public void playerScore(boolean chase){
         int i=0;
         System.out.println("BATTING SCORE CARD");
         System.out.println("Player     " + "\t" + "Score" + "\t" + "Ball Played" + "\t" + "4's"  + "\t" + "6's");
@@ -171,23 +175,28 @@ public class Innings {
         }
     }
 
-    public int  myRamdomBat( int rating)
+    public int  myRamdomBat(int rating)
     {
             Random random = new Random();
             int maxRun = random.nextInt(rating+1);
             return maxRun;
 
     }
-    public boolean  myRamdombowl( int rating)
+    public boolean  myRamdombowl(int rating)
     {
         Random random = new Random();
-        int maxWicket = random.nextInt(11);
+        int maxWicket = random.nextInt(getOvers()/2);
         if(maxWicket < rating/2)
             return true;
         return false;
     }
 
 
+    public int getOvers() {
+        return overs;
+    }
 
-
+    public void setOvers(int overs) {
+        this.overs = overs;
+    }
 }
