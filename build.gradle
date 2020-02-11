@@ -1,6 +1,6 @@
 plugins {
 	id 'org.springframework.boot' version '2.2.4.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.5.RELEASE'
 	id 'java'
 }
 
@@ -10,6 +10,14 @@ sourceCompatibility = '1.8'
 
 repositories {
 	jcenter()
+	mavenCentral()
+	maven {
+		url 'https://tkartifactory.tekioncloud.xyz/repository/tek-product-maven-snapshots'
+		credentials {
+			username = "${mavenUser}"
+			password = "${mavenPassword}"
+		}
+	}
 }
 
 ext {
@@ -20,7 +28,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compile 'org.springframework:spring-test:4.1.2.RELEASE'
+		compile 'org.springframework:spring-test:4.1.2.RELEASE'
+	compile('com.tekion.sdk:mongosupport:1.0.0-SNAPSHOT')
+	compile('com.tekion.sdk:essupport:1.0.201-SNAPSHOT')
 	compile 'org.springframework.boot:spring-boot-starter-logging:1.2.0.RELEASE'
 	compile 'org.springframework.boot:spring-boot-starter-web:1.2.0.RELEASE'
 	compile 'org.springframework.boot:spring-boot-starter-actuator:1.2.0.RELEASE'
@@ -30,6 +40,7 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 		testCompile group: 'junit', name: 'junit', version: '4.12'
+
 		//testCompile group: 'org', name: 'lombok', version: '1.18.4'
 		//testcompile group: 'org.projectlombok' ,  name:'lombok' , version:'1.18.4'
 		//annotationProcessor 'org.projectlombok:lombok:1.18.6'

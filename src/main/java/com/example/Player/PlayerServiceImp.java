@@ -17,46 +17,15 @@ class PlayerServiceImp implements PlayerService {
     @Autowired
     private PlayerRepo playerRepo;
 
-
     @Override
     public void save(Match match) {
-        playerRepo.save(match);
+         playerRepo.save(match);
     }
 
     @Override
     public Optional<Match> findbyIndexes(String id) {
-       return  playerRepo.findById(id);
+       return  null ;//playerRepo.findById(id);
     }
-//
-//    @Override
-//    public List<Player> getPlayer(String name) {
-//       return playerRepo.findAll();
-//    }
-//
-//    @Override
-//    public Player save(Player player) {
-//        return playerRepo.save(player);
-//    }
-//
-//    @Override
-//    public List<Player> saveAll(List<Player> players) {
-//        return playerRepo.saveAll(players);
-//    }
-//
-//    @Override
-//    public List<Player> findAll() {
-//        return playerRepo.findAll();
-//    }
-//
-//    @Override
-//    public Optional<Player> findbyId(String id) {
-//        return playerRepo.findById(id);
-//    }
-//
-//    @Override
-//    public List<Player> getbymaxscore(int maxScore) {
-//        return playerRepo.findByScoreGreaterThan(maxScore);
-//    }
 
 
 
